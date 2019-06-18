@@ -1,0 +1,13 @@
+prompt = 'What is the value of rNL? ';
+rnl = input(prompt);
+prompt = 'What is the value of y? ';
+y = input(prompt);
+a=10^-rnl/10;
+b=1;
+c=1/y;
+z=0:0.01:10;
+k=b.*(z-(1/2));
+n=tanh(k);
+fNL=a*n+c;
+plot(z,fNL);
+hold on;
