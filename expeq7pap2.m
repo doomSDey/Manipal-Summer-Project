@@ -3,7 +3,7 @@ x_upperlimit=12;   %value of x upperlimit
 M=2;           %standard degrees of freedom for noncentral chi-square distribtuion
 rsig=4;    %rNL value of signal
 Pav_in=0.5;   %average power
-sigma=0.09; 
+sigma=0.02; 
 P0=((4)/(rsig+3))*Pav_in;             %calculating P0
 P1=((4*rsig)/(rsig+3))*Pav_in;    %calculating P1
 d=0.01;  % step size
@@ -68,18 +68,32 @@ grid on;
 hold on;
 %legend({'P0','P1'},...
 %    'Location','NorthEast','FontSize',10);
-q1=trapz(Y,pdf3,2);
+q1=trapz(Y,pdf3);
 disp(q1);
-q2=trapz(Y,pdf4,2);
+q2=trapz(Y,pdf4);
 disp(q2);
+q3=trapc(0,3,pdf3,1200);
+disp(q3);
 grid on;
 hold on;
 
-diff=abs(pdf3-pdf4) < 0.01;
-mindiff=min(diff);
+diff=abs(pdf1-pdf2) < 0.1;
+mindiff=max(diff);
 int=find(diff==mindiff);
-sub1=int(10);
+i=1;
+if(sigma<0.09)
+    m=0.5;
+elseif(sigma<=0.09)
+    m=0.2;
+end
+while(x(i)<m)
+    i=i+1;
+end
+sub1=int(i);
 xint=x(sub1);
-yint=pdf3(sub1);
+yint=pdf1(sub1);
 %disp(mindiff);
 plot(xint,yint,'ko','MarkerSize',7);
+grid on;
+hold on;
+hold on;

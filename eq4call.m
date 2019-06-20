@@ -9,10 +9,8 @@ P0=((4)/(rsig+3))*Pav_in;             %calculating P0
 P1=((4*rsig)/(rsig+3))*Pav_in;    %calculating P1
 d=0.01;  % step size
 %x=0:d:x_upperlimit;   %normalized input power
-Xder=tanhderfunc(x);
 G=2;
 %Y=x.*G;
-
 [pdf1,pdf2]=eq7call(x,sigma);
 pdf3=(1/G).*pdf1;
 pdf4=(1/G).*pdf2;

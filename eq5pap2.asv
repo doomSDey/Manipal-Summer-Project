@@ -11,14 +11,20 @@ Xder=tanhderfunc(x);
 G=2;
 Y=x.*G;
 
-pdf1=(1/(2.*sigma^2)).*((x/P0).^0.5).*exp(-((x+P0)/(2.*sigma^2))).*besseli(1,sqrt(x.*P0)/sigma^2);
-pdf2=(1/(2.*sigma^2)).*((x/P1).^0.5).*exp(-((x+P1)/(2*sigma^2))).*besseli(1,sqrt(x.*P1)/sigma^2);
+[pdf1,pdf2]=eq4call(x,sigma);
 
-pdf3=(1/G).*pdf1;
-pdf4=(1/G).*pdf2;
+m1=mean(pdf1);
+m2=mean(pdf2);
 
-m1=mean(pdf3);
-m2=mean(pdf4);
+temp1=(1./(2*sigma^2)).*((m1./x).^0.5).*exp(-(m1+x)./(2*(sigma^2))).*besseli(1,sqrt(x.*m1)./(sigma^2)).*pdf1;
+temp1(isnan(temp1))=0;
+plot(x,temp1);
+hold on;
+q=trapint(x,temp1,0,5);
+disp(q)
 
-temp1=(1./(2*sigma^2)).*(m1./x).^0.5.*exp(-(m1+x)./(2*sigma^2).*besseli(1,sqrt(x.*m1)./sigma^2)).*pdf3;
-trapint((m1+x),temp1,
+temp1=(1./(2*sigma^2)).*((m2./x).^0.5).*exp(-(m2+x)./(2*(sigma^2))).*besseli(1,sqrt(x.*m2)./(sigma^2)).*pdf2;
+temp1(isnan(temp1))=0;
+plot(x,temp1);
+hold on;
+q=trapint(x,temp1,0,5);

@@ -1,4 +1,4 @@
-function [pdf3,pdf4]= eq4call(x)
+function [pdf3,pdf4]= eq4call(x,sigma)
     
 x_upperlimit=12;   %value of x upperlimit
 M=2;           %standard degrees of freedom for noncentral chi-square distribtuion

@@ -11,7 +11,7 @@ Xder=tanhderfunc(x);
 G=2;
 Y=x.*G;
 
-[pdf1,pd2]=eq7call(x,sigma);
+[pdf1,pdf2]=eq7call(x,sigma);
 pdf3=(1/G).*pdf1;
 pdf4=(1/G).*pdf2;
 

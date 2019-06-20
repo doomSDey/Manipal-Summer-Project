@@ -16,7 +16,16 @@ Y=x.*G;
 m1=mean(pdf1);
 m2=mean(pdf2);
 
-temp1=(1./(2*sigma^2)).*(m1./x).^0.5.*exp(-(m1+x)./(2*sigma^2).*besseli(1,sqrt(x.*m1)./sigma^2)).*pdf1;
+temp1=(1./(2*sigma^2)).*((m1./x).^0.5).*exp(-(m1+x)./(2*(sigma^2))).*besseli(1,sqrt(x.*m1)./(sigma^2)).*pdf1;
+temp1(isnan(temp1))=0;
 plot(x,temp1);
-q=trapz(x,temp1,2);
+hold on;
+q=trapint(x,temp1,0,5);
+disp(q)
+
+temp2=(1./(2*sigma^2)).*((m2./x).^0.5).*exp(-(m2+x)./(2*(sigma^2))).*besseli(1,sqrt(x.*m2)./(sigma^2)).*pdf2;
+temp2(isnan(temp2))=0;
+plot(x,temp2);
+hold on;
+q=trapint(x,temp2,0,5);
 disp(q)

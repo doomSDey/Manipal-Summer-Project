@@ -56,8 +56,8 @@ c2(c113)=(-(x(c113)+P1))./(2.*(sigma.^2));
 d2(c113)=(sqrt(x(c113).*P1))./(sigma.^2);
 pdf2(c113)=(a2(c113).*b2(c113).*exp(c2(c113)+d2(c113)))./(sqrt(2.*pi.*d2(c113)));
 
-pdf3=abs(1./(tanhderfunc(Y))).*pdf1;
-pdf4=abs(1./(tanhderfunc(Y))).*pdf2;
+pdf3=abs(1./(tanhderfunc(x))).*pdf1;
+pdf4=abs(1./(tanhderfunc(x))).*pdf2;
 
 end
 
