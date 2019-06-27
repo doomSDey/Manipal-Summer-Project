@@ -9,21 +9,21 @@ d=0.001;  % step size
 x=0:d:x_upperlimit;   %normalized input power
 Xder=tanhderfunc(x);
 G=2;
-Y=G.*x;
+Y=x.*G;
 x3=0:0.001:12;
 [pdf1,pdf2]=eq4call(x,sigma);
 
 for i=1:12001
-        temp1=(1./(2*sigma^2)).*((x3(i)./x).^0.5).*exp(-((x3(i)+x)./(2*(sigma^2)))).*besseli(1,sqrt(x.*x3(i))./(sigma^2)).*pdf1;
+        temp1=(1./(2*sigma^2)).*((x3(i)./Y).^0.5).*exp(-((x3(i)+Y)./(2*(sigma^2)))).*besseli(1,sqrt(Y.*x3(i))./(sigma^2)).*pdf1;
         temp1(isinf(temp1)|isnan(temp1)) = 0;
-        eq(i)=trapint(Y,temp1,0,6);
+        eq(i)=trapint(Y,temp1,0,10);
 end
-M=tanhfunc(x);
-plot(M,eq);
+plot(Y,eq);
 hold on;
+
 for i=1:12001
-        temp1=(1./(2*sigma^2)).*((x3(i)./x).^0.5).*exp(-((x3(i)+x)./(2*(sigma^2)))).*besseli(1,sqrt(x.*x3(i))./(sigma^2)).*pdf2;
+        temp1=(1./(2*sigma^2)).*((x3(i)./Y).^0.5).*exp(-((x3(i)+Y)./(2*(sigma^2)))).*besseli(1,sqrt(Y.*x3(i))./(sigma^2)).*pdf2;
         temp1(isinf(temp1)|isnan(temp1)) = 0;
-        eq2(i)=trapint(Y,temp1,0,6);
+        eq2(i)=trapint(Y,temp1,0,10);
 end
-plot(M,eq2);
+plot(Y,eq2);

@@ -1,6 +1,5 @@
 function [pdf3,pdf4]= eq7call(x,sigma)
     
-
 x_upperlimit=12;   %value of x upperlimit
 M=2;           %standard degrees of freedom for noncentral chi-square distribtuion
 rsig=4;    %rNL value of signal
@@ -59,7 +58,6 @@ pdf2(c113)=(a2(c113).*b2(c113).*exp(c2(c113)+d2(c113)))./(sqrt(2.*pi.*d2(c113)))
 
 pdf3=abs(1./(tanhderfunc(x))).*pdf1;
 pdf4=abs(1./(tanhderfunc(x))).*pdf2;
-
 
 end
 
