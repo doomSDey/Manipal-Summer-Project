@@ -10,6 +10,7 @@ x=0:d:x_upperlimit;   %normalized input power
 Xder=tanhderfunc(x);
 G=2;
 Y=tanhfunc(x);
+Y2=Y.*G;
 
 [pdf1,pdf2]=eq7call(x,sigma);
 pdf3=(1/G).*pdf1;
@@ -19,10 +20,13 @@ m1=mean(pdf3);
 m2=mean(pdf4);
 disp(m1);
 disp(m2);
-plot(Y,pdf3);
+plot(Y,pdf1);
+hold on;
+plot(Y,pdf2);
+plot(Y2,pdf3);
 grid on;
 hold on;
 %temp2=1./tanhderfunc(inv(x));
-plot(Y,pdf4);
+plot(Y2,pdf4);
 grid on;
 hold on;
